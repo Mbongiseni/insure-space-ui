@@ -1,0 +1,72 @@
+<br/>
+<h4>Clients List</h4>
+<hr/>
+<!-- Filter -->
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
+<table mat-table [dataSource]="clients" class="mat-elevation-z8" width="100%">
+  <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Index Column -->
+  <ng-container matColumnDef="index">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let element"> {{index + 1}} </td>
+  </ng-container>
+
+  <!-- Title Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Title </th>
+    <td mat-cell *matCellDef="let element"> {{element.lookupTitle.name}} </td>
+  </ng-container>
+
+  <!-- First Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+  </ng-container>
+
+  <!-- Last Name Column -->
+  <ng-container matColumnDef="surname">
+    <th mat-header-cell *matHeaderCellDef> Surname </th>
+    <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+  </ng-container>
+
+  <!-- View Column -->
+  <ng-container matColumnDef="view">
+    <th mat-header-cell *matHeaderCellDef> View </th>
+    <td mat-cell *matCellDef="let element">
+      <a routerLink="/clients/view/{{element.clientId}}">
+        <mat-icon>search</mat-icon>
+      </a>
+    </td>
+  </ng-container>
+
+  <!-- Edit Column -->
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef> Edit </th>
+    <td mat-cell *matCellDef="let element">
+      <a routerLink="/clients/edit/{{element.clientId}}">
+        <mat-icon>edit</mat-icon>
+      </a>
+    </td>
+  </ng-container>
+
+  <!-- Delete Column -->
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef> Delete </th>
+    <td mat-cell *matCellDef="let element">
+      <a routerLink="">
+        <mat-icon (click)="deleleClientDetails(element)">delete</mat-icon>
+      </a>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<br/>
+<hr/>
+<button color="primary" mat-raised-button>Add Client</button>

@@ -1,0 +1,352 @@
+<div class="container-fluid">
+    <br/>
+    <h5>{{getPageTitle()}}</h5>
+    <hr/>
+    <form 
+        #clientForm="ngForm" 
+        (ngSubmit)="save(clientForm)">
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Personal Information
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <table width="100%" cellpadding="1" cellspacing="1">
+                    <tr>
+                        <td width="30%" valign="middle">
+                            <!-- Title Field -->
+                            <mat-form-field>
+                                <mat-select 
+                                    [(ngModel)]="client.lookupTitle"
+                                    name="lookupTitle"
+                                    placeholder="Title" 
+                                   >
+                                    <mat-option 
+                                        *ngFor="let title of titleList" 
+                                        [(value)]="title">
+                                        {{title.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                        <td valign="middle">
+                            <!-- Id Number Field -->
+                            <br/>
+                            <mat-form-field>
+                                <input 
+                                    matInput 
+                                    placeholder="ID Number"
+                                    [(ngModel)]="client.idNumber" 
+                                    name="idNumber" 
+                                    id="idNumber" 
+                                   />
+                            </mat-form-field>
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="middle">
+                            <!-- Title Field -->
+                            <mat-form-field>
+                                <input 
+                                    matInput 
+                                    placeholder="Initials" 
+                                    [(ngModel)]="client.initials"
+                                    name="initials" 
+                                    id="initials" 
+                                   />
+                            </mat-form-field>
+                        </td>
+                        <td valign="middle">
+                            <!-- Gender Field -->
+                            <mat-form-field>
+                                <mat-select 
+                                    [(ngModel)]="client.lookupGender"
+                                    name="lookupGender"
+                                    placeholder="Gender"
+                                   >
+                                    <mat-option 
+                                        *ngFor="let gender of genderList" 
+                                        [(value)]="gender">
+                                        {{gender.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="middle">
+                            <!-- First Name Field -->
+                            <mat-form-field>
+                                <input 
+                                    matInput 
+                                    placeholder="First Name" 
+                                    [(ngModel)]="client.firstName"
+                                    name="firstName" 
+                                    id="firstName" 
+                                   />
+                            </mat-form-field>
+                        </td>
+                        <td valign="middle">
+                            <!-- Race Field -->
+                            <mat-form-field>
+                                <mat-select 
+                                    [(ngModel)]="client.lookupRace"
+                                    placeholder="Race"
+                                    name="lookupRace" 
+                                    id="race">
+                                    <mat-option 
+                                        *ngFor="let race of racesList" 
+                                        [(value)]="race">
+                                        {{race.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="middle">
+                            <!-- Middle Name Field -->
+                            <mat-form-field>
+                                <input 
+                                    matInput 
+                                    placeholder="Middle Name" 
+                                    [(ngModel)]="client.middleName"
+                                    name="middleName" 
+                                    id="middleName" 
+                                   />
+                            </mat-form-field>
+                        </td>
+                        <td valign="middle">
+                            <!-- Marital Status Field -->
+                            <mat-form-field>
+                                <mat-select 
+                                    [(ngModel)]="client.lookupMaritalStatus"
+                                    placeholder="Marital Status" 
+                                    name="lookupMaritalStatus" 
+                                    id="maritalstatus">
+                                    <mat-option 
+                                        *ngFor="let status of maritalStatusesList" 
+                                        [(value)]="status">
+                                        {{status.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="middle">
+                            <!-- Last Name Field -->
+                            <mat-form-field>
+                                <input 
+                                    matInput 
+                                    placeholder="Last Name" 
+                                    [(ngModel)]="client.lastName"
+                                    name="lastName" 
+                                    id="lastName" 
+                                   />
+                            </mat-form-field>
+                        </td>
+                        <td valign="middle">
+                            <!-- Language Field -->
+                            <mat-form-field>
+                                <mat-select 
+                                    [(ngModel)]="client.lookupLanguage"
+                                    placeholder="Language"
+                                    name="lookupLanguage" 
+                                    id="language">
+                                    <mat-option 
+                                        *ngFor="let language of languageList" 
+                                        [(value)]="language">
+                                        {{language.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="middle">
+                            <!-- Date of Birth Field -->
+                            <mat-form-field>
+                                <input 
+                                    matInput 
+                                    [matDatepicker]="picker" 
+                                    placeholder="Choose a date" 
+                                    [(ngModel)]="client.dateOfBirth"
+                                    name="dateOfBirth" 
+                                    id="dateOfBirth"                                    
+                                />
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </td>
+                        <td valign="middle">
+                            &nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <hr/>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Contact Information
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <table width="100%" cellpadding="1" cellspacing="1">
+                <tr>
+                    <td width="30%" valign="middle">
+                        <!-- Cell - Phone Number -->
+                        <div ngModelGroup='contactInfo'>
+                            <mat-form-field>
+                                <input 
+                                    matInput placeholder="Phone Number (Cell)" 
+                                    [(ngModel)]="client.contactInfo.cellPhoneNumber"
+                                    name="cellPhoneNumber" 
+                                    id="cellPhoneNumber" 
+                                   />
+                            </mat-form-field>
+                        </div>
+                    </td>
+                    <td valign="middle">
+                        <!-- Land line - Phone Number -->
+                        <div ngModelGroup='contactInfo'>
+                            <mat-form-field>
+                                <input 
+                                    matInput placeholder="Phone Number (Land line)"
+                                    [(ngModel)]="client.contactInfo.homePhoneNumber" 
+                                    name="homePhoneNumber" 
+                                    id="homePhoneNumber"                                 
+                                />
+                            </mat-form-field>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="middle">
+                        <!-- Email Address -->
+                        <div ngModelGroup='contactInfo'>
+                            <mat-form-field>
+                                <input 
+                                    matInput 
+                                    placeholder="Email Address" 
+                                    [(ngModel)]="client.contactInfo.emallAddress"
+                                    name="emallAddress" 
+                                    id="emallAddress"  
+                                   />
+                            </mat-form-field>
+                        </div>
+                    </td>
+                    <td valign="middle"></td>
+                </tr>
+            </table>
+
+        </mat-expansion-panel>
+        <hr/>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Address Information
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <table width="100%" cellpadding="1" cellspacing="1">
+                <tr>
+                    <td width="30%" valign="middle">
+                        <!-- Address Line 1 -->
+                        <div ngModelGroup='addressInfo'>
+                            <mat-form-field>
+                                <input 
+                                    matInput 
+                                    placeholder="Addres Line 1" 
+                                    [(ngModel)]="client.addressInfo.addressLine1"
+                                    name="addressLine1" 
+                                    id="addressLine1" 
+                                   />
+                            </mat-form-field>
+                        </div>
+                    </td>
+                    <td valign="middle">
+                        <!-- Address Line 2 -->
+                        <div ngModelGroup='addressInfo'>
+                            <mat-form-field>
+                                <input 
+                                    matInput 
+                                    placeholder="Addres Line 2" 
+                                    [(ngModel)]="client.addressInfo.addressLine2"
+                                    name="addressLine2" 
+                                    id="addressLine2" 
+                                   />
+                            </mat-form-field>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="30%" valign="middle">
+                        <!-- Address Line 3 -->
+                        <div ngModelGroup='addressInfo'>
+                            <mat-form-field>
+                                <input 
+                                    matInput 
+                                    placeholder="Addres Line 3" 
+                                    [(ngModel)]="client.addressInfo.addressLine3"
+                                    name="addressLine3" 
+                                    id="addressLine3"  
+                                   />
+                            </mat-form-field>
+                        </div>
+                    </td>
+                    <td valign="middle">
+                        <!-- Address Line 4 -->
+                        <div ngModelGroup='addressInfo'>
+                            <mat-form-field>
+                                <input 
+                                    matInput 
+                                    placeholder="Addres Line 4" 
+                                    [(ngModel)]="client.addressInfo.addressLine4"
+                                    name="addressLine4" 
+                                    id="addressLine4" 
+                                   />
+                            </mat-form-field>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="30%" valign="middle">
+                        <!-- Postal Codde -->
+                        <div ngModelGroup='addressInfo'>
+                            <mat-form-field>
+                                <input 
+                                    matInput 
+                                    placeholder="Postal Code" 
+                                    [(ngModel)]="client.addressInfo.postalCode"
+                                    name="postalCode" 
+                                    id="postalCode" 
+                                    />
+                            </mat-form-field>
+                        </div>    
+                    </td>
+                    <td valign="middle">
+                           <input type="Submit" value="Submit">
+                    </td>
+                </tr>
+            </table>
+        </mat-expansion-panel>
+    </form>
+    <hr/>
+    <button 
+        color="primary" 
+        mat-raised-button 
+        (click)="redirectToClientList()">
+        Back
+    </button>
+    <span>&nbsp;</span>
+    <button 
+        color="primary" 
+        mat-raised-button 
+        (click)="updateClientDetails(client)">
+        Save
+    </button>
+    <hr/>
+</div>
